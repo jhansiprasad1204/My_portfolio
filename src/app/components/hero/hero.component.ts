@@ -32,10 +32,9 @@ import { ScrollService } from '../../core/scroll.service';
         loop
         preload="auto"
         [muted]="isMuted()"
-        poster="hero/hero-poster.webp"
+        poster="portrait.jpg"
       >
-        <source src="Intro.mp4" type="video/mp4" />
-        <source src="hero/hero.mp4" type="video/mp4" />
+        <source src="intro.mp4" type="video/mp4" />
       </video>
 
       <!-- UI OVERLAYS (Z-10) -->

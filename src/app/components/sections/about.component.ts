@@ -105,7 +105,7 @@ import { GithubService } from '../../core/github.service';
                 <div class="flex flex-col items-center my-auto">
                   <div class="w-28 h-36 rounded-2xl overflow-hidden border-2 border-neutral-200 shadow-inner group bg-neutral-50">
                     <img 
-                      src="portrait-bust.webp" 
+                      src="portrait.jpg" 
                       [alt]="profile.name"
                       class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
