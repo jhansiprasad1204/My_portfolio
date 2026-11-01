@@ -64,7 +64,7 @@ export const PROFILE = {
   githubUser: 'jhansiprasad1204',
   linkedin: 'https://www.linkedin.com/in/jhansiprasad1204/',
   linkedinUser: 'jhansiprasad1204',
-  portfolioUrl: 'https://jhansiprasad1204.github.io/portfolio/',
+  portfolioUrl: 'https://jhansiprasad1204.github.io/My_portfolio/',
   resumePath: 'resume.pdf',
   graduationYear: '2023',
   idNumber: 'JP-81794-OPS',
