@@ -49,8 +49,8 @@ export class GithubService {
 
   stats = signal<GitHubStats>({
     username: this.username,
-    totalContributions: 60,
-    publicRepos: 3,
+    totalContributions: 69,
+    publicRepos: 8,
     followers: 0,
     months: GITHUB_MONTH_HEADERS,
     contributions: [],
@@ -64,7 +64,7 @@ export class GithubService {
     this.stats.update((s) => ({ ...s, loading: true }));
 
     // 1. Fetch live user profile stats from GitHub API
-    fetch(`https://api.github.com/users/${this.username}`)
+    fetch(`https://api.github.com/users/${this.username}?t=${Date.now()}`, { cache: 'no-store' })
       .then((res) => {
         if (!res.ok) throw new Error(`User API error ${res.status}`);
         return res.json();
@@ -80,8 +80,8 @@ export class GithubService {
       })
       .catch((err) => console.warn('GitHub user API fetch error:', err));
 
-    // 2. Fetch live contributions
-    fetch('github-contributions.json')
+    // 2. Fetch live contributions from auto-synced JSON (cache-busted)
+    fetch(`github-contributions.json?t=${Date.now()}`, { cache: 'no-store' })
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load local contributions JSON');
         return res.json();

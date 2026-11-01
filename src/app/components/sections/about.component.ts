@@ -208,7 +208,7 @@ import { GithubService } from '../../core/github.service';
             <dl class="space-y-4 text-xs sm:text-sm">
               <div class="border-b border-[rgba(13,13,13,0.1)] pb-3">
                 <dt class="text-[#77756f] text-xs font-mono">Current Role</dt>
-                <dd class="font-semibold text-[#0d0d0d] mt-0.5">Front-End Developer at {{ profile.clientEngagement }}</dd>
+                <dd class="font-semibold text-[#0d0d0d] mt-0.5">{{ profile.cardRole }}</dd>
               </div>
               <div class="border-b border-[rgba(13,13,13,0.1)] pb-3">
                 <dt class="text-[#77756f] text-xs font-mono">Highest Degree</dt>
