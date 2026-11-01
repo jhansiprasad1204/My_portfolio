@@ -8,7 +8,7 @@ import { PROFILE } from '../../core/data';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer id="contact" class="pt-12 sm:pt-16 pb-12 bg-white border-t border-line" aria-label="Contact Chittivalasa Rakesh">
+    <footer id="contact" class="pt-12 sm:pt-16 pb-12 bg-white border-t border-line" aria-label="Contact Jhansi Lakshmi Prasad">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Big Interactive Heading -->
@@ -96,7 +96,7 @@ import { PROFILE } from '../../core/data';
               </svg>
               <!-- Center Icon -->
               <div class="absolute inset-0 m-auto w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-mono text-xs">
-                CR
+                JP
               </div>
             </div>
           </div>
@@ -138,4 +138,3 @@ export class ContactComponent {
     }
   }
 }
-

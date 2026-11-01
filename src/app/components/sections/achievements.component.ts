@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, signal, ElementRef, ViewChild, AfterViewInit, OnDestroy, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PROUD_MOMENT_CERTIFICATES } from '../../core/data';
+import { ACHIEVEMENTS } from '../../core/data';
 import { HackerRankService } from '../../core/hackerrank.service';
 import { CodingProfilesService } from '../../core/coding-profiles.service';
 
@@ -237,47 +237,59 @@ import { CodingProfilesService } from '../../core/coding-profiles.service';
               </div>
             </a>
 
-            <!-- 04. ACCENTURE CERTIFICATE CARDS -->
-            @for (certificate of certificates; track certificate.index; let i = $index) {
-              <a
-                [href]="certificate.path"
-                target="_blank"
-                rel="noopener noreferrer"
-                [attr.title]="certificate.detail"
-                [attr.aria-label]="'Open ' + certificate.title + ' PDF in a new tab'"
-                class="card-item shrink-0 w-[360px] sm:w-[460px] h-[270px] sm:h-[310px] p-8 rounded-3xl bg-white border border-[rgba(13,13,13,0.08)] flex flex-col justify-between transition-all duration-500 select-none group"
+            <!-- 04. RESUME MILESTONE METRICS -->
+            @for (ach of achievements; track ach.index; let i = $index) {
+              <div 
+                class="card-item shrink-0 w-[360px] sm:w-[460px] h-[270px] sm:h-[310px] p-8 rounded-3xl bg-white border border-[rgba(13,13,13,0.08)] flex flex-col justify-between transition-all duration-500 select-none"
                 [ngClass]="activeCardIndex() === (i + 3) 
                   ? 'active-center-card -translate-y-3 shadow-2xl scale-102 border-neutral-300' 
                   : 'shadow-md opacity-75'"
               >
-                <div class="relative h-[155px] w-full overflow-hidden rounded-xl border border-[rgba(13,13,13,0.08)] bg-[#f4f2ee]">
-                  <img
-                    [src]="certificate.previewPath"
-                    [alt]="certificate.title + ' preview'"
-                    class="h-full w-full object-contain"
-                    loading="lazy"
-                  />
-                  <span class="absolute left-2 top-2 rounded-lg bg-white/90 px-2 py-1 font-mono text-[10px] font-bold text-[#0d0d0d] shadow">
-                    ACC
-                  </span>
-                  <span class="absolute right-2 top-2 rounded-lg bg-white/90 px-2 py-1 font-mono text-[10px] text-[#77756f] shadow">
-                    {{ certificate.index }}
-                  </span>
+                <!-- Platform Badge & Index -->
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.08)] flex items-center justify-center font-mono text-xs font-bold text-[#0d0d0d] shadow-inner">
+                    @if (ach.platform === 'SRE') {
+                      <span>SRE</span>
+                    } @else if (ach.platform === 'AWS') {
+                      <span>AWS</span>
+                    } @else if (ach.platform === 'BRAU') {
+                      <span>MCA</span>
+                    } @else if (ach.platform === 'GitOps') {
+                      <span>GIT</span>
+                    } @else if (ach.platform === 'Certifications') {
+                      <span>OPS</span>
+                    } @else {
+                      <span>PRJ</span>
+                    }
+                  </div>
+
+                  <span class="font-mono text-xs text-[#77756f]">{{ ach.index }}</span>
                 </div>
 
+                <!-- Bottom Layout: Left Details + Right Huge Metric Number -->
                 <div class="flex items-end justify-between gap-4">
-                  <div class="min-w-0">
-                    <h3 class="font-bold text-base text-[#0d0d0d] tracking-tight leading-tight mb-1 group-hover:underline">
-                      {{ certificate.title }}
+                  <div class="max-w-[220px]">
+                    <h3 class="font-bold text-lg text-[#0d0d0d] tracking-tight leading-tight mb-1">
+                      {{ ach.label }}
                     </h3>
-                    <p class="font-mono text-xs text-[#77756f]">{{ certificate.issuer }} · Open PDF</p>
+                    <p class="font-mono text-xs text-[#77756f] mb-2">
+                      {{ ach.caption }}
+                    </p>
+                    <p class="text-[11px] text-[#3a3a3a] leading-relaxed line-clamp-2">
+                      {{ ach.detail }}
+                    </p>
                   </div>
-                  <div class="text-right font-mono text-xs text-[#77756f] flex items-center gap-1">
-                    <span>View PDF</span>
-                    <span class="text-sm transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform">↗</span>
+
+                  <div class="text-right">
+                    <div class="text-5xl sm:text-6xl font-bold tracking-tight text-[#0d0d0d] font-mono leading-none">
+                      @if (ach.prefix) { <span class="text-4xl text-[#77756f]">{{ ach.prefix }}</span> }
+                      <span>{{ ach.targetNumber }}</span>
+                      @if (ach.suffix) { <span class="text-2xl text-[#77756f] font-sans">{{ ach.suffix }}</span> }
+                    </div>
                   </div>
                 </div>
-              </a>
+
+              </div>
             }
 
             <!-- End of Track Card -->
@@ -311,7 +323,7 @@ export class AchievementsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('containerRef') containerRef!: ElementRef<HTMLElement>;
   @ViewChild('trackRef') trackRef!: ElementRef<HTMLElement>;
 
-  readonly certificates = PROUD_MOMENT_CERTIFICATES;
+  readonly achievements = ACHIEVEMENTS;
   readonly hrService = inject(HackerRankService);
   readonly codingProfiles = inject(CodingProfilesService);
 
@@ -320,7 +332,7 @@ export class AchievementsComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly gfg = this.codingProfiles.geeksforgeeks;
 
   get totalCardsCount(): number {
-    return this.certificates.length + 3;
+    return this.achievements.length + 3; // HackerRank + CodeChef + GeeksforGeeks + Achievements
   }
 
   totalPinnedHeight = signal<number>(3600);
@@ -385,3 +397,6 @@ export class AchievementsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.activeCardIndex.set(activeIdx);
   }
 }
+
+
+

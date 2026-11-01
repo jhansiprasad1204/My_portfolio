@@ -20,12 +20,12 @@ export class CodingProfilesService {
   readonly codechef = signal<CodingProfile>({
     id: 'codechef',
     platform: 'CodeChef',
-    username: 'uber_wolves_10',
-    url: 'https://www.codechef.com/users/uber_wolves_10',
+    username: 'jhansiprasad1204',
+    url: 'https://www.codechef.com/users/jhansiprasad1204',
     status: 'Active Profile',
     iconType: 'codechef',
     headline: 'Competitive Programming',
-    subline: 'Practice & contest submissions active',
+    subline: 'Problem solving & algorithms track',
     metricLabel: 'Submissions Track',
     metricValue: 'Active'
   });
@@ -33,11 +33,11 @@ export class CodingProfilesService {
   readonly geeksforgeeks = signal<CodingProfile>({
     id: 'geeksforgeeks',
     platform: 'GeeksforGeeks',
-    username: 'chittivala9rw',
-    url: 'https://www.geeksforgeeks.org/profile/chittivala9rw',
+    username: 'jhansiprasad1204',
+    url: 'https://www.geeksforgeeks.org/user/jhansiprasad1204',
     status: 'Verified Profile',
     iconType: 'geeksforgeeks',
-    headline: 'DSA & Core Concepts',
+    headline: 'Core Web & Problem Solving',
     subline: 'Software Engineer learning journey',
     metricLabel: 'Coding Profile',
     metricValue: 'Verified'

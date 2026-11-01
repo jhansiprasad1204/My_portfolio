@@ -3,7 +3,15 @@ import { Injectable, signal } from '@angular/core';
 export interface GitHubDay {
   date: string;
   count: number;
-  level: number; // 0, 1, 2, 3, 4
+  level: number; // -1: empty/hidden, 0: blank, 1, 2, 3, 4: active intensities
+  row: number; // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+  col: number; // 0 to 52
+  tooltip?: string;
+}
+
+export interface MonthLabel {
+  name: string;
+  colSpan: number;
 }
 
 export interface GitHubStats {
@@ -11,33 +19,54 @@ export interface GitHubStats {
   totalContributions: number;
   publicRepos: number;
   followers: number;
+  months: MonthLabel[];
   contributions: GitHubDay[];
   loading: boolean;
+  error: boolean;
 }
+
+export const GITHUB_MONTH_HEADERS: MonthLabel[] = [
+  { name: 'Nov', colSpan: 5 },
+  { name: 'Dec', colSpan: 4 },
+  { name: 'Jan', colSpan: 4 },
+  { name: 'Feb', colSpan: 4 },
+  { name: 'Mar', colSpan: 5 },
+  { name: 'Apr', colSpan: 4 },
+  { name: 'May', colSpan: 5 },
+  { name: 'Jun', colSpan: 4 },
+  { name: 'Jul', colSpan: 4 },
+  { name: 'Aug', colSpan: 5 },
+  { name: 'Sep', colSpan: 4 },
+  { name: 'Oct', colSpan: 4 }
+];
 
 @Injectable({
   providedIn: 'root'
 })
 export class GithubService {
-  readonly username = 'chittivalasa124';
-  readonly profileUrl = 'https://github.com/chittivalasa124';
+  readonly username = 'jhansiprasad1204';
+  readonly profileUrl = 'https://github.com/jhansiprasad1204';
 
   stats = signal<GitHubStats>({
     username: this.username,
-    totalContributions: 204, // Live synced (201 + 3 new contributions on Oct 26)
-    publicRepos: 17,
+    totalContributions: 60,
+    publicRepos: 3,
     followers: 0,
-    contributions: this.generateInitialCalendar(),
-    loading: false
+    months: GITHUB_MONTH_HEADERS,
+    contributions: [],
+    loading: true,
+    error: false
   });
 
   fetchStats(): void {
     if (typeof window === 'undefined') return;
 
-    // Fetch official GitHub user profile to get live public repo and follower count
+    this.stats.update((s) => ({ ...s, loading: true }));
+
+    // 1. Fetch live user profile stats from GitHub API
     fetch(`https://api.github.com/users/${this.username}`)
       .then((res) => {
-        if (!res.ok) throw new Error('Failed to load user info');
+        if (!res.ok) throw new Error(`User API error ${res.status}`);
         return res.json();
       })
       .then((user) => {
@@ -49,147 +78,82 @@ export class GithubService {
           }));
         }
       })
-      .catch(() => {});
+      .catch((err) => console.warn('GitHub user API fetch error:', err));
 
-    // 2. Fetch live contributions synced from the GitHub Actions snake workflow
+    // 2. Fetch live contributions
     fetch('github-contributions.json')
       .then((res) => {
-        if (!res.ok) throw new Error('Not loaded');
+        if (!res.ok) throw new Error('Failed to load local contributions JSON');
         return res.json();
       })
       .then((data) => {
-        if (data && Array.isArray(data.contributions) && data.contributions.length > 0) {
+        if (data && Array.isArray(data.contributions)) {
           this.stats.update((s) => ({
             ...s,
-            totalContributions: data.totalContributions || s.totalContributions,
-            contributions: data.contributions
+            totalContributions: typeof data.totalContributions === 'number' ? data.totalContributions : s.totalContributions,
+            publicRepos: typeof data.publicRepos === 'number' ? data.publicRepos : s.publicRepos,
+            contributions: data.contributions,
+            loading: false,
+            error: false
           }));
         }
       })
       .catch(() => {
-        // Fallback to initial calendar
-      });
-
-    // 3. Keep contributions fresh in real-time by polling workflow artifact
-    this.syncFromSnakeWorkflow();
-  }
-
-  private syncFromSnakeWorkflow(): void {
-    if (typeof window === 'undefined') return;
-
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        ctx.drawImage(img, 0, 0);
-
-        const startX = 22;
-        const startY = 22;
-        const step = 16;
-        const today = new Date();
-        const todayDayOfWeek = today.getDay();
-        const lastValidIdx = 52 * 7 + todayDayOfWeek;
-
-        const days: GitHubDay[] = [];
-        let total = 0;
-
-        for (let col = 0; col < 53; col++) {
-          for (let row = 0; row < 7; row++) {
-            const x = startX + col * step;
-            const y = startY + row * step;
-            const p = ctx.getImageData(x, y, 1, 1).data;
-            const r = p[0], g = p[1], b = p[2];
-
-            let level = 0;
-            let count = 0;
-            const isCyan = (r < 50 && g > 200 && b > 200);
-
-            if (!isCyan) {
-              if (g > 180) { level = 4; count = 8; }
-              else if (g > 140) { level = 3; count = 5; }
-              else if (g > 90) { level = 2; count = 3; }
-              else if (g > 50) { level = 1; count = 1; }
+        // Fallback: fetch from public contributions proxy
+        fetch(`https://github-contributions-api.jogruber.de/v4/${this.username}`)
+          .then((res) => res.json())
+          .then((apiData) => {
+            if (apiData && Array.isArray(apiData.contributions)) {
+              this.reconstructFromApi(apiData.contributions);
             }
-
-            const idx = col * 7 + row;
-            const dayOffset = lastValidIdx - idx;
-            const d = new Date(today);
-            d.setDate(today.getDate() - dayOffset);
-            const dateStr = d.toISOString().split('T')[0];
-
-            total += count;
-            days.push({
-              date: dateStr,
-              count,
-              level
-            });
-          }
-        }
-
-        const sliced = days.slice(days.length - 364);
-        if (sliced.length > 0) {
-          this.stats.update((s) => ({
-            ...s,
-            totalContributions: Math.max(total, s.totalContributions),
-            contributions: sliced
-          }));
-        }
-      } catch {
-        // Silently fall back to cached json
-      }
-    };
-    img.src = `https://raw.githubusercontent.com/${this.username}/${this.username}/output/github-contribution-grid-snake.gif?t=${Date.now()}`;
+          })
+          .catch(() => {
+            this.stats.update((s) => ({ ...s, loading: false, error: true }));
+          });
+      });
   }
 
-  private generateInitialCalendar(): GitHubDay[] {
-    const days: GitHubDay[] = [];
-    const today = new Date();
-    // 52 weeks = 364 days
-    for (let i = 363; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      const dateStr = d.toISOString().split('T')[0];
-
-      // Recreate user's active patterns from screenshot (scattered across summer & fall)
-      const dayOfWeek = d.getDay();
-      const month = d.getMonth(); // 0 = Jan, 4 = May, 5 = Jun, 6 = Jul, 7 = Aug, 9 = Oct
-      let level = 0;
-      let count = 0;
-
-      if (dateStr === '2026-10-26' || i === 0) {
-        // Oct 26, 2026: 3 contributions in My_portfolio
-        level = 2;
-        count = 3;
-      } else if (month === 4 && (i % 7 === 2 || i % 7 === 5)) {
-        level = 2;
-        count = 3;
-      } else if (month === 5 && (i % 9 === 1 || i % 6 === 3)) {
-        level = 3;
-        count = 5;
-      } else if (month === 6 && (i % 8 === 2 || i % 5 === 4)) {
-        level = 4;
-        count = 7;
-      } else if (month === 7 && (i % 7 === 1 || i % 10 === 4)) {
-        level = 2;
-        count = 4;
-      } else if (month === 9 && i % 14 === 2) {
-        level = 1;
-        count = 1;
+  private reconstructFromApi(rawContributions: Array<{ date: string; count: number; level: number }>): void {
+    const map = new Map<string, { count: number; level: number }>();
+    for (const item of rawContributions) {
+      if (item && item.date) {
+        map.set(item.date, item);
       }
-
-      days.push({
-        date: dateStr,
-        count,
-        level
-      });
     }
-    return days;
+
+    const grid: GitHubDay[] = [];
+    const baseSunday = new Date('2025-11-02'); // GitHub's 53-week start date
+    let total = 0;
+
+    for (let c = 0; c < 53; c++) {
+      for (let r = 0; r < 7; r++) {
+        const offset = c * 7 + r;
+        const cellDate = new Date(baseSunday);
+        cellDate.setDate(baseSunday.getDate() + offset);
+        const dateStr = cellDate.toISOString().split('T')[0];
+
+        const match = map.get(dateStr);
+        const count = match ? match.count : 0;
+        const level = match ? match.level : 0;
+        total += count;
+
+        grid.push({
+          date: dateStr,
+          count,
+          level,
+          row: r,
+          col: c,
+          tooltip: count > 0 ? `${count} contributions on ${dateStr}` : `No contributions on ${dateStr}`
+        });
+      }
+    }
+
+    this.stats.update((s) => ({
+      ...s,
+      totalContributions: total > 0 ? total : s.totalContributions,
+      contributions: grid,
+      loading: false,
+      error: false
+    }));
   }
 }
-

@@ -14,7 +14,7 @@ export interface SkillElement {
   number: number;
   symbol: string;
   name: string;
-  family: 'Languages' | 'Frontend' | 'Backend' | 'Databases' | 'Caching & Messaging' | 'Cloud & DevOps' | 'Quality & Testing' | 'Architecture & Concepts';
+  family: 'Containers & Orchestration' | 'Cloud & Multi-Cloud' | 'Infrastructure as Code' | 'CI/CD & GitOps' | 'Observability & SRE' | 'DevSecOps & Security' | 'Scripting & Automation';
   isBrand: boolean;
   projects: string[];
   description: string;
@@ -37,43 +37,46 @@ export interface Certification {
   url?: string;
 }
 
-export interface ProudMomentCertificate {
+export interface Achievement {
   index: string;
-  title: string;
-  issuer: string;
+  metric: string;
+  targetNumber: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+  caption: string;
   detail: string;
-  path: string;
-  previewPath: string;
+  platform: string;
 }
 
 export const PROFILE = {
-  name: 'Chittivalasa Rakesh',
-  firstName: 'RAKESH',
-  role: 'Associate Software Engineer (Angular Developer)',
-  cardRole: 'Software Engineer (Developer)',
-  headingRole: 'Full Stack Developer.',
-  clientEngagement: 'Accenture in India — Client: AT&T',
-  email: 'chittivalasa1204@gmail.com',
-  phone: '+91 630330870',
-  phoneHref: 'tel:+91630330870',
+  name: 'Jhansi Lakshmi Prasad',
+  firstName: 'JHANSI',
+  role: 'Advanced DevOps Engineer | Cloud & Platform Infrastructure',
+  cardRole: 'Advanced DevOps & Cloud Engineer',
+  headingRole: 'DevOps Engineer.',
+  clientEngagement: 'Enterprise Cloud & Platform Engineering',
+  email: 'jhansiprasad18@gmail.com',
+  phone: '+91 8179416127',
+  phoneHref: 'tel:+918179416127',
   location: 'India',
-  github: 'https://github.com/chittivalasa124',
-  githubUser: 'chittivalasa124',
-  linkedin: 'https://www.linkedin.com/in/chittivalasa124/',
-  linkedinUser: 'chittivalasa124',
-  portfolioUrl: 'https://chittivalasa124.github.io/Rakesh_portfolio.com/',
+  github: 'https://github.com/jhansiprasad1204',
+  githubUser: 'jhansiprasad1204',
+  linkedin: 'https://www.linkedin.com/in/jhansiprasad1204/',
+  linkedinUser: 'jhansiprasad1204',
+  portfolioUrl: 'https://jhansiprasad1204.github.io/portfolio/',
   resumePath: 'resume.pdf',
-  graduationYear: '2024',
-  idNumber: 'CR-124818-ENG',
-  validFrom: '2000',
+  graduationYear: '2023',
+  idNumber: 'JP-81794-OPS',
+  validFrom: '2025',
   validTill: '∞',
-  department: 'Frontend Engineering / AT&T',
+  department: 'Cloud Platform & SRE Engineering',
   resumeSummary:
-    'Angular Developer at Accenture, working on the AT&T client, with experience in multi-platform frontend development. Skilled in Angular, TypeScript, JavaScript, responsive UI development, and API integration, with a broader technical foundation across Java/Spring Boot, REST APIs, databases, messaging, cloud, and DevOps. Focused on building maintainable, secure, and scalable applications.',
+    'Advanced DevOps & Cloud Platform Engineer specializing in Kubernetes (EKS), Terraform Infrastructure as Code, GitOps with ArgoCD, and automated DevSecOps pipelines across multi-environment architectures. Experienced in building self-healing container platforms, shifting security left with Vault and Trivy, and driving high-availability observability with Prometheus and Grafana.',
   shortQuote:
-    'Dedicated to building responsive, secure, and accessible multi-platform applications with clean reactive architecture.',
-  signature: 'Ch . Rakesh',
-  backName: 'Ch . Rakesh'
+    'Dedicated to engineering resilient, self-healing cloud platforms and zero-downtime delivery engines with immutable infrastructure.',
+  signature: 'Jhansi Lakshmi Prasad',
+  backName: 'Jhansi Lakshmi Prasad'
 };
 
 export const NAV = [
@@ -88,259 +91,258 @@ export const NAV = [
 
 export const SKILL_GROUPS = [
   'All',
-  'Languages',
-  'Frontend',
-  'Backend',
-  'Databases',
-  'Caching & Messaging',
-  'Cloud & DevOps',
-  'Quality & Testing',
-  'Architecture & Concepts'
+  'Containers & Orchestration',
+  'Cloud & Multi-Cloud',
+  'Infrastructure as Code',
+  'CI/CD & GitOps',
+  'Observability & SRE',
+  'DevSecOps & Security',
+  'Scripting & Automation'
 ] as const;
 
 export const SKILLS: SkillElement[] = [
-  // Languages
-  { number: 1, symbol: 'Ja', name: 'Java', family: 'Languages', isBrand: true, projects: ['Secure File Storage in the Cloud'], description: 'Java 17/21 enterprise microservices, multithreading, and OOP design.' },
-  { number: 2, symbol: 'Ts', name: 'TypeScript', family: 'Languages', isBrand: true, projects: ['AT&T Enterprise Frontend', 'KNSFPCL Company Portfolio'], description: 'Strict typing, modern generics, Signals, and enterprise design patterns.' },
-  { number: 3, symbol: 'Js', name: 'JavaScript (ES6+)', family: 'Languages', isBrand: true, projects: ['AT&T Multi-Platform', 'Web Internships'], description: 'Asynchronous event loops, DOM manipulation, ES-next modular architecture.' },
-  { number: 4, symbol: 'Sq', name: 'SQL', family: 'Languages', isBrand: true, projects: ['Data Analysis & Microservices'], description: 'Complex relational schemas, query tuning, indexing, and transactional integrity.' },
-  { number: 5, symbol: 'H5', name: 'HTML5', family: 'Languages', isBrand: true, projects: ['Enterprise Web UIs', 'KNSFPCL Portfolio'], description: 'Accessible semantics, ARIA attributes, responsive layout structure.' },
-  { number: 6, symbol: 'C3', name: 'CSS3', family: 'Languages', isBrand: true, projects: ['Enterprise Design Systems', 'KNSFPCL'], description: 'Responsive layouts, modern animations, utility systems, and CSS variables.' },
+  // Containers & Orchestration
+  { number: 1, symbol: 'Dk', name: 'Docker', family: 'Containers & Orchestration', isBrand: true, projects: ['DevSecOps Pipeline', 'Enterprise EKS'], description: 'Multi-stage Dockerfiles, rootless daemon configuration, distroless images, layer caching, and container runtime optimization.' },
+  { number: 2, symbol: 'K8', name: 'Kubernetes', family: 'Containers & Orchestration', isBrand: true, projects: ['Enterprise EKS GitOps', 'Cloud Observability'], description: 'Production cluster architecture, CRDs, StatefulSets, DaemonSets, HPA/VPA autoscaling, RBAC, CNI, and CSI storage.' },
+  { number: 3, symbol: 'Hm', name: 'Helm 3', family: 'Containers & Orchestration', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Kubernetes package management, complex chart templating, subcharts, value inheritance, and release rollbacks.' },
+  { number: 4, symbol: 'Kz', name: 'Kustomize', family: 'Containers & Orchestration', isBrand: false, projects: ['DevSecOps Pipeline'], description: 'Template-free declarative configuration overlays customizing Kubernetes manifests across Dev, Staging, and Production.' },
+  { number: 5, symbol: 'Is', name: 'Istio Service Mesh', family: 'Containers & Orchestration', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Envoy proxy sidecars, mTLS encryption, traffic splitting, circuit breaking, fault injection, and distributed ingress routing.' },
+  { number: 6, symbol: 'Cd', name: 'CoreDNS & Ingress', family: 'Containers & Orchestration', isBrand: false, projects: ['Enterprise EKS GitOps'], description: 'Ingress-NGINX controllers, cert-manager automated Let’s Encrypt TLS provisioning, and split-horizon DNS routing.' },
 
-  // Frontend
-  { number: 7, symbol: 'Ng', name: 'Angular', family: 'Frontend', isBrand: true, projects: ['AT&T Client Engagement', 'KNSFPCL Company Portfolio'], description: 'Enterprise single-page apps, signals, lazy routing, and modular components.' },
-  { number: 8, symbol: 'Rx', name: 'RxJS', family: 'Frontend', isBrand: true, projects: ['AT&T Enterprise Frontend'], description: 'Reactive streams, custom operators, memory leak prevention, and state pipelines.' },
-  { number: 9, symbol: 'Sg', name: 'Angular Signals', family: 'Frontend', isBrand: true, projects: ['Modern Angular Applications'], description: 'Fine-grained reactivity, computed state, effects, and zero-zone performance.' },
-  { number: 10, symbol: 'Nx', name: 'NgRx', family: 'Frontend', isBrand: true, projects: ['AT&T Enterprise Frontend'], description: 'Predictable unidirectional state store, actions, reducers, and effects.' },
-  { number: 11, symbol: 'Mt', name: 'Angular Material', family: 'Frontend', isBrand: true, projects: ['AT&T Client Modules'], description: 'Design-compliant component library, data tables, dialogs, and themes.' },
-  { number: 12, symbol: 'Rf', name: 'Reactive Forms', family: 'Frontend', isBrand: false, projects: ['AT&T Form Validation Modules'], description: 'Dynamic form arrays, asynchronous validators, and strict typed form groups.' },
-  { number: 13, symbol: 'Lz', name: 'Lazy Loading', family: 'Frontend', isBrand: false, projects: ['AT&T Performance Engineering'], description: 'Route-level code splitting, deferred views, and bundle optimization.' },
-  { number: 14, symbol: 'Rw', name: 'Responsive Web Design', family: 'Frontend', isBrand: false, projects: ['KNSFPCL Company Portfolio', 'AT&T'], description: 'Mobile-first breakpoints, fluid typography, touch ergonomics, and WCAG accessibility.' },
+  // Cloud & Multi-Cloud
+  { number: 7, symbol: 'Ek', name: 'AWS EKS', family: 'Cloud & Multi-Cloud', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Managed Kubernetes control planes, Karpenter dynamic node autoscaling, managed node groups, and AWS VPC CNI integration.' },
+  { number: 8, symbol: 'Vp', name: 'Amazon VPC & Networking', family: 'Cloud & Multi-Cloud', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Multi-AZ VPC architecture, Transit Gateway routing, NAT gateways, PrivateLink endpoints, and network ACL security.' },
+  { number: 9, symbol: 'Ia', name: 'AWS IAM & IRSA', family: 'Cloud & Multi-Cloud', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'IAM Roles for Service Accounts (IRSA), OIDC identity federation, least-privilege policies, and SCP boundaries.' },
+  { number: 10, symbol: 'S3', name: 'Amazon S3 & Storage', family: 'Cloud & Multi-Cloud', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Object storage with lifecycle policies, cross-region replication, KMS envelope encryption, and Terraform backend state.' },
+  { number: 11, symbol: 'Ec', name: 'Amazon EC2 & ASG', family: 'Cloud & Multi-Cloud', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Graviton ARM64 architecture, launch templates, Spot instance fleets, dynamic auto-scaling, and AMI lifecycle management.' },
+  { number: 12, symbol: 'Cf', name: 'CloudFront & Route 53', family: 'Cloud & Multi-Cloud', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Global CDN edge caching, geo-DNS routing, latency-based resolution, SSL offloading, and automated health-check failovers.' },
 
-  // Backend
-  { number: 15, symbol: 'Sb', name: 'Spring Boot', family: 'Backend', isBrand: true, projects: ['Enterprise Microservices'], description: 'Production-ready REST APIs, auto-configuration, and Actuator metrics.' },
-  { number: 16, symbol: 'Sm', name: 'Spring MVC', family: 'Backend', isBrand: true, projects: ['Web Service Architecture'], description: 'Controller mappings, request handling, validation, and content negotiation.' },
-  { number: 17, symbol: 'Ss', name: 'Spring Security', family: 'Backend', isBrand: true, projects: ['Microservices Security'], description: 'JWT authentication filter chains, CORS/CSRF policies, and RBAC.' },
-  { number: 18, symbol: 'Jp', name: 'Spring Data JPA', family: 'Backend', isBrand: true, projects: ['Persistence Layers'], description: 'Repository abstraction, custom specifications, pagination, and caching.' },
-  { number: 19, symbol: 'Hb', name: 'Hibernate', family: 'Backend', isBrand: true, projects: ['Object-Relational Mapping'], description: 'Entity lifecycle management, query caching, and batch fetch optimization.' },
-  { number: 20, symbol: 'Nd', name: 'Node.js', family: 'Backend', isBrand: true, projects: ['API Services & Microservices'], description: 'High-concurrency event-driven runtime and asynchronous microservices.' },
-  { number: 21, symbol: 'Ex', name: 'Express.js', family: 'Backend', isBrand: true, projects: ['RESTful Web Services'], description: 'Middleware orchestration, routing, error-handling pipelines, and JSON APIs.' },
-  { number: 22, symbol: 'Ms', name: 'Microservices', family: 'Backend', isBrand: false, projects: ['Distributed Architecture'], description: 'Decoupled domain boundaries, service discovery, and resilient API contracts.' },
+  // Infrastructure as Code
+  { number: 13, symbol: 'Tf', name: 'Terraform', family: 'Infrastructure as Code', isBrand: true, projects: ['Enterprise EKS GitOps', 'Cloud Observability'], description: 'Declarative HCL infrastructure provisioning, reusable modules, remote state locking with DynamoDB, and drift detection.' },
+  { number: 14, symbol: 'Tg', name: 'Terragrunt', family: 'Infrastructure as Code', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'DRY Terraform architecture orchestrating multi-account, multi-region infrastructure hierarchies and dependency trees.' },
+  { number: 15, symbol: 'An', name: 'Ansible', family: 'Infrastructure as Code', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Agentless configuration management, idempotent playbooks, custom roles, Jinja2 templating, and Ansible Vault encryption.' },
+  { number: 16, symbol: 'Fc', name: 'AWS CloudFormation', family: 'Infrastructure as Code', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Native AWS declarative template provisioning, nested stacks, StackSets for multi-account governance, and change sets.' },
+  { number: 17, symbol: 'Pk', name: 'Packer', family: 'Infrastructure as Code', isBrand: false, projects: ['Enterprise EKS GitOps'], description: 'Automated golden image baking for AWS AMIs with CIS security benchmarks and automated vulnerability hardening.' },
+  { number: 18, symbol: 'Cp', name: 'Crossplane', family: 'Infrastructure as Code', isBrand: false, projects: ['Enterprise EKS GitOps'], description: 'Cloud-native control plane managing external cloud infrastructure through declarative Kubernetes CRDs and XRDs.' },
 
-  // Databases
-  { number: 23, symbol: 'Mg', name: 'MongoDB', family: 'Databases', isBrand: true, projects: ['Document Store Workloads'], description: 'Schema design, compound indexes, aggregation pipelines, and replication.' },
-  { number: 24, symbol: 'Mo', name: 'Mongoose', family: 'Databases', isBrand: true, projects: ['Node.js Data Modeling'], description: 'Schema validation, pre/post middleware hooks, and population pipelines.' },
-  { number: 25, symbol: 'Pg', name: 'PostgreSQL', family: 'Databases', isBrand: true, projects: ['Relational Data Services'], description: 'ACID transactions, JSONB columns, query explain analysis, and indexing.' },
-  { number: 26, symbol: 'My', name: 'MySQL', family: 'Databases', isBrand: true, projects: ['Relational Database Systems'], description: 'Storage engine tuning, relational integrity, and join optimization.' },
+  // CI/CD & GitOps
+  { number: 19, symbol: 'Ar', name: 'ArgoCD', family: 'CI/CD & GitOps', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Declarative GitOps continuous delivery, automated cluster synchronization, drift correction, and multi-tenant App of Apps.' },
+  { number: 20, symbol: 'Ga', name: 'GitHub Actions', family: 'CI/CD & GitOps', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Matrix workflows, reusable workflow modules, self-hosted runner clusters, and secretless AWS OIDC authentication.' },
+  { number: 21, symbol: 'Gl', name: 'GitLab CI/CD', family: 'CI/CD & GitOps', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Dynamic parent-child pipelines, DAG execution graphs, integrated container registries, and environment stop actions.' },
+  { number: 22, symbol: 'Jk', name: 'Jenkins', family: 'CI/CD & GitOps', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Declarative Jenkinsfiles, shared Groovy libraries, ephemeral Kubernetes agent pod autoscaling, and artifact archiving.' },
+  { number: 23, symbol: 'Fx', name: 'FluxCD', family: 'CI/CD & GitOps', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'GitOps operator toolkit managing continuous Helm release reconciliation, Kustomize sync, and image update automation.' },
+  { number: 24, symbol: 'Bg', name: 'Canary & Blue-Green', family: 'CI/CD & GitOps', isBrand: false, projects: ['Enterprise EKS GitOps'], description: 'Progressive delivery with Argo Rollouts, automated traffic shifting, metric analysis gates, and instant rollback triggers.' },
 
-  // Caching & Messaging
-  { number: 27, symbol: 'Rd', name: 'Redis', family: 'Caching & Messaging', isBrand: true, projects: ['High-Speed Caching'], description: 'In-memory key-value caching, session stores, TTL strategies, and Pub/Sub.' },
-  { number: 28, symbol: 'Kf', name: 'Apache Kafka', family: 'Caching & Messaging', isBrand: true, projects: ['Event-Driven Architecture'], description: 'Distributed commit log, producers, consumer groups, and high-throughput streams.' },
+  // Observability & SRE
+  { number: 25, symbol: 'Pr', name: 'Prometheus', family: 'Observability & SRE', isBrand: true, projects: ['Cloud Observability'], description: 'Time-series metric scraping, PromQL querying, custom ServiceMonitors, recording rules, and Alertmanager routing.' },
+  { number: 26, symbol: 'Gr', name: 'Grafana', family: 'Observability & SRE', isBrand: true, projects: ['Cloud Observability'], description: 'Unified monitoring dashboards, golden signal tracking (Latency, Traffic, Errors, Saturation), and alerting pipelines.' },
+  { number: 27, symbol: 'Ot', name: 'OpenTelemetry', family: 'Observability & SRE', isBrand: true, projects: ['Cloud Observability'], description: 'Distributed tracing instrumentation, trace propagation contexts, custom metric exporters, and OTel collector pipelines.' },
+  { number: 28, symbol: 'Lk', name: 'ELK & OpenSearch', family: 'Observability & SRE', isBrand: true, projects: ['Cloud Observability'], description: 'Distributed log indexing, FluentBit daemonsets, Logstash log transformations, and Kibana operational dashboards.' },
+  { number: 29, symbol: 'Lo', name: 'Grafana Loki', family: 'Observability & SRE', isBrand: true, projects: ['Cloud Observability'], description: 'Horizontally scalable, cost-effective log aggregation system indexed via Kubernetes labels using LogQL querying.' },
+  { number: 30, symbol: 'Sr', name: 'SRE & SLOs / Error Budgets', family: 'Observability & SRE', isBrand: false, projects: ['Cloud Observability'], description: 'Service Level Objectives, SLI metric calculation, error budget depletion monitoring, and automated incident escalation.' },
 
-  // Cloud & DevOps
-  { number: 29, symbol: 'Aw', name: 'AWS', family: 'Cloud & DevOps', isBrand: true, projects: ['Secure File Storage in the Cloud'], description: 'EC2, S3, IAM, RDS, ECR, EKS, CloudWatch, load balancing, and auto-scaling.' },
-  { number: 30, symbol: 'Dk', name: 'Docker', family: 'Cloud & DevOps', isBrand: true, projects: ['Containerized Workloads'], description: 'Multi-stage Dockerfiles, image minimization, and container security.' },
-  { number: 31, symbol: 'K8', name: 'Kubernetes', family: 'Cloud & DevOps', isBrand: true, projects: ['Container Orchestration'], description: 'Deployments, services, ingress routing, rolling updates, and Pod configs.' },
-  { number: 32, symbol: 'Jk', name: 'Jenkins', family: 'Cloud & DevOps', isBrand: true, projects: ['CI/CD Pipelines'], description: 'Automated build, test, and release pipeline orchestration.' },
-  { number: 33, symbol: 'Ga', name: 'GitHub Actions', family: 'Cloud & DevOps', isBrand: true, projects: ['Automated Workflows'], description: 'Declarative YAML workflows for linting, unit tests, and artifact publishing.' },
+  // DevSecOps & Security
+  { number: 31, symbol: 'Vt', name: 'HashiCorp Vault', family: 'DevSecOps & Security', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Dynamic secret generation, transit encryption as a service, PKI certificate authorities, and Vault Agent sidecars.' },
+  { number: 32, symbol: 'Tv', name: 'Trivy', family: 'DevSecOps & Security', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Comprehensive security scanning for container images, Git repositories, Terraform misconfigurations, and software SBOMs.' },
+  { number: 33, symbol: 'Sq', name: 'SonarQube', family: 'DevSecOps & Security', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Static application security testing (SAST), code smell detection, vulnerability thresholds, and quality gate automation.' },
+  { number: 34, symbol: 'Ky', name: 'Kyverno & OPA Gatekeeper', family: 'DevSecOps & Security', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Kubernetes Policy-as-Code admission controllers enforcing Pod Security Standards, image registry validation, and compliance.' },
+  { number: 35, symbol: 'Fa', name: 'Falco', family: 'DevSecOps & Security', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Runtime cloud-native threat detection inspecting system calls and behavioral anomalies through Linux kernel eBPF probes.' },
+  { number: 36, symbol: 'Sg', name: 'Cosign & Sigstore', family: 'DevSecOps & Security', isBrand: false, projects: ['DevSecOps Pipeline'], description: 'Cryptographic container image signing, keyless verification with Rekor transparency logs, and supply chain attestation.' },
 
-  // Quality & Testing
-  { number: 34, symbol: 'Js', name: 'Jest', family: 'Quality & Testing', isBrand: true, projects: ['Frontend Unit Testing'], description: 'Fast snapshot testing, mocked services, and test coverage metrics.' },
-  { number: 35, symbol: 'Km', name: 'Karma & Jasmine', family: 'Quality & Testing', isBrand: true, projects: ['Angular Unit Testing'], description: 'Browser test runner, spy fixtures, and component harness tests.' },
-  { number: 36, symbol: 'Cy', name: 'Cypress', family: 'Quality & Testing', isBrand: true, projects: ['End-to-End Validation'], description: 'Headless browser end-to-end integration and user journey tests.' },
-  { number: 37, symbol: 'Pw', name: 'Playwright', family: 'Quality & Testing', isBrand: true, projects: ['Multi-browser E2E'], description: 'Cross-browser automated verification, visual regressions, and accessibility checks.' },
-  { number: 38, symbol: 'Sq', name: 'SonarQube', family: 'Quality & Testing', isBrand: true, projects: ['Code Quality & Security'], description: 'Static analysis, code smell detection, vulnerability scanning, and test gates.' },
-
-  // Architecture & Concepts
-  { number: 39, symbol: 'Ds', name: 'DSA', family: 'Architecture & Concepts', isBrand: false, projects: ['Algorithmic Efficiency'], description: 'Data structures, algorithm complexity analysis, trees, graphs, and dynamic programming.' },
-  { number: 40, symbol: 'Sd', name: 'System Design', family: 'Architecture & Concepts', isBrand: false, projects: ['Scalable Architecture'], description: 'Distributed systems, high availability, rate limiting, and fault tolerance.' },
-  { number: 41, symbol: 'Op', name: 'OOP & SOLID', family: 'Architecture & Concepts', isBrand: false, projects: ['Clean Software Architecture'], description: 'Clean architecture principles, design patterns, separation of concerns.' },
-  { number: 42, symbol: 'Cr', name: 'Cryptography (AES/RSA)', family: 'Architecture & Concepts', isBrand: false, projects: ['Secure File Storage in the Cloud'], description: 'Hybrid symmetric and asymmetric encryption for confidentiality and data integrity.' },
-  { number: 43, symbol: 'CN', name: 'Computer Networks', family: 'Architecture & Concepts', isBrand: false, projects: ['Distributed Systems', 'Microservices'], description: 'TCP/IP stack, DNS, HTTP/HTTPS, OSI model, subnetting, routing protocols, and socket programming.' },
-  { number: 44, symbol: 'DB', name: 'DBMS', family: 'Architecture & Concepts', isBrand: false, projects: ['Data Analysis & Microservices', 'Relational Data Services'], description: 'Relational algebra, normalization, ACID properties, indexing, transactions, and query optimization.' },
-  { number: 45, symbol: 'OS', name: 'Operating System', family: 'Architecture & Concepts', isBrand: false, projects: ['System-Level Engineering'], description: 'Process scheduling, memory management, virtual memory, deadlocks, file systems, and concurrency.' }
+  // Scripting & Automation
+  { number: 37, symbol: 'Py', name: 'Python Automation', family: 'Scripting & Automation', isBrand: true, projects: ['Cloud Observability', 'DevSecOps Pipeline'], description: 'Boto3 AWS automation, custom Kubernetes operators, monitoring scripts, and infrastructure test automation.' },
+  { number: 38, symbol: 'Sh', name: 'Bash & Shell Scripting', family: 'Scripting & Automation', isBrand: true, projects: ['DevSecOps Pipeline'], description: 'Advanced POSIX shell scripts, Linux text processing with jq/awk/sed, pipeline automation, and system diagnostics.' },
+  { number: 39, symbol: 'Go', name: 'Go / Golang', family: 'Scripting & Automation', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Cloud-native systems programming, custom Kubernetes controllers, fast CLI utilities, and concurrency pipelines.' },
+  { number: 40, symbol: 'Lx', name: 'Linux System Internals', family: 'Scripting & Automation', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'Kernel tuning, systemd unit management, cgroups v2, network namespaces, eBPF performance profiling, and I/O optimization.' },
+  { number: 41, symbol: 'Nx', name: 'NGINX & Reverse Proxy', family: 'Scripting & Automation', isBrand: true, projects: ['Enterprise EKS GitOps'], description: 'High-concurrency reverse proxying, SSL/TLS termination, rate limiting, load balancing algorithms, and header manipulation.' },
+  { number: 42, symbol: 'Gt', name: 'Git & Version Control', family: 'Scripting & Automation', isBrand: true, projects: ['Enterprise EKS GitOps', 'DevSecOps Pipeline'], description: 'Trunk-based development, branch protection rules, GPG commit verification, submodules, and interactive rebase workflows.' }
 ];
 
 export const PROJECTS: Project[] = [
   {
-    id: 'dance-academy',
+    id: 'enterprise-gitops-eks',
     index: '01',
-    title: 'Dance Academy Management System',
-    kicker: 'Full-Stack Enterprise & Workflow Architecture',
+    title: 'Enterprise Kubernetes GitOps Platform on AWS EKS',
+    kicker: 'Zero-Downtime Multi-Cluster Cloud Architecture',
     description:
-      'A full-stack web application connecting prospective members, enrolled students, and academy administrators through role-specific experiences. Features complete admission lifecycle review, student attendance tracking, Razorpay fee checkout, and dedicated role-protected dashboard APIs.',
+      'Architected and provisioned an enterprise-grade, multi-region Kubernetes platform on AWS EKS using modular Terraform and Terragrunt. Standardized declarative continuous delivery with ArgoCD across 50+ microservices, incorporating Karpenter dynamic node autoscaling, Istio service mesh, automated cert-manager TLS, and progressive canary rollouts.',
     features: [
-      'Multi-tier role-based access control (Admin, User, Student) with secure transition pipeline',
-      'End-to-end admission approval workflow with real-time status tracking',
-      'Integrated Razorpay checkout gateway for digital student fee collection & ledger logs',
-      'Dedicated dashboard REST APIs built on Spring Boot 3.5, Spring Security, JWT, and MySQL'
+      'Provisioned multi-cluster AWS EKS infrastructure using modular Terraform with remote state locking and strict security groups',
+      'Implemented GitOps continuous deployment via ArgoCD with automated drift detection, self-healing, and role-based access control',
+      'Configured Karpenter just-in-time node provisioning, reducing cluster compute overhead and AWS EC2 spend by 35%',
+      'Engineered Istio service mesh with mTLS encryption, circuit breaking, and Argo Rollouts for zero-downtime canary releases'
     ],
-    tech: ['Angular 22', 'TypeScript', 'Java 17', 'Spring Boot 3.5', 'Spring Security', 'JWT', 'Spring Data JPA', 'MySQL', 'PrimeNG', 'Razorpay'],
-    github: 'https://github.com/chittivalasa124',
-    badge: 'Full-Stack Case Study'
+    tech: ['Kubernetes (EKS)', 'Terraform', 'ArgoCD', 'Helm', 'Istio', 'Karpenter', 'AWS IAM (IRSA)', 'cert-manager'],
+    github: 'https://github.com/jhansiprasad1204',
+    badge: 'Production GitOps Platform'
   },
   {
-    id: 'crypto-cloud',
+    id: 'devsecops-pipeline-ecosystem',
     index: '02',
-    title: 'Secure File Storage in the Cloud using Hybrid Cryptography',
-    kicker: 'Cloud Security & Hybrid Cryptography',
+    title: 'Automated Multi-Environment DevSecOps Pipeline Ecosystem',
+    kicker: 'Security-Shift-Left & Immutable Infrastructure',
     description:
-      'Implemented secure cloud file storage using AES and RSA hybrid cryptography to support data confidentiality and integrity. Collaborated with a team to integrate the system with AWS S3 and Azure Blob Storage.',
+      'Engineered enterprise CI/CD and DevSecOps pipelines utilizing GitHub Actions, GitLab CI, and HashiCorp Vault. Integrated automated static application security testing (SAST), container vulnerability scanning with Trivy, dynamic short-lived secrets injection, and automated promotion across Dev, Staging, and Production environments.',
     features: [
-      'AES & RSA hybrid cryptographic pipeline ensuring end-to-end data confidentiality',
-      'Multi-cloud integration across AWS S3 and Microsoft Azure Blob Storage',
-      'Strict key management and zero-knowledge data integrity verification',
-      'Asynchronous upload streams with chunked cryptographic hashing'
+      'Constructed hardened CI/CD workflows with GitHub Actions & GitLab CI featuring reusable workflows and matrix builds',
+      'Shifted security left by integrating Trivy container scanning, SonarQube quality gates, and Kyverno policy-as-code enforcement',
+      'Eliminated hardcoded credentials by deploying HashiCorp Vault with dynamic OIDC credential generation and IRSA integration',
+      'Implemented automated semantic versioning, container image provenance signing with Cosign, and Docker multi-stage caching'
     ],
-    tech: ['Java', 'AES / RSA', 'AWS S3', 'Azure Blob', 'Spring Boot', 'REST APIs'],
-    github: 'https://github.com/chittivalasa124/secure-file-storage-cloud',
-    badge: 'Security Architecture'
+    tech: ['GitHub Actions', 'GitLab CI', 'Docker', 'HashiCorp Vault', 'Trivy', 'SonarQube', 'Kyverno', 'Cosign'],
+    github: 'https://github.com/jhansiprasad1204',
+    badge: 'Enterprise DevSecOps'
   },
   {
-    id: 'knsfpcl-portfolio',
+    id: 'cloud-observability-sre',
     index: '03',
-    title: 'KNSFPCL Company Portfolio',
-    kicker: 'Performance Engineering & Web Architecture',
+    title: 'Production Cloud Observability, SRE & Incident Response Ecosystem',
+    kicker: 'High-Dimensional Monitoring & Automated Auto-Remediation',
     description:
-      'Spearheaded the optimization of site performances through the utilization of efficient code practices in page API integration, achieving a notable 25% decrease in page load times; elevated user engagement levels by presenting visually appealing and informative content, resulting in an impressive 50% enhancement in overall user satisfaction.',
+      'Designed a comprehensive, centralized observability and Site Reliability Engineering (SRE) architecture using Prometheus, Grafana, OpenTelemetry, and Grafana Loki. Established critical SLO/SLI dashboards, distributed tracing, automated alert routing, and self-healing auto-remediation scripts.',
     features: [
-      '25% reduction in overall page load times through API query and bundle optimization',
-      '50% boost in user satisfaction via intuitive and responsive UI layout design',
-      'Modern responsive architecture delivering seamless touch and desktop ergonomics',
-      'Optimized asset delivery pipeline, tree-shaking, and lazy route loading'
+      'Deployed Prometheus Operator with custom ServiceMonitors capturing multi-dimensional application and cluster metrics',
+      'Built unified Grafana executive and engineering dashboards tracking golden signals (Latency, Traffic, Errors, Saturation)',
+      'Configured distributed tracing via OpenTelemetry collectors and Jaeger to troubleshoot microsecond microservice bottlenecks',
+      'Implemented automated Alertmanager routing with PagerDuty integration, dynamic threshold alerting, and self-healing CronJobs'
     ],
-    tech: ['Angular', 'TypeScript', 'Responsive Design', 'API Integration', 'Performance Tuning'],
-    github: 'https://github.com/chittivalasa124',
-    badge: 'Production Web App'
+    tech: ['Prometheus', 'Grafana', 'OpenTelemetry', 'Grafana Loki', 'Alertmanager', 'Python', 'AWS CloudWatch', 'PagerDuty'],
+    github: 'https://github.com/jhansiprasad1204',
+    badge: 'Observability & SRE'
   }
 ];
 
 export const CERTIFICATIONS: Certification[] = [
   {
     index: '01',
-    title: 'Microsoft Certified: Azure Developer Associate',
-    issuer: 'Microsoft • Credential ID: 94B6A34CBF23DB34',
-    year: '2026',
-    url: 'https://learn.microsoft.com/en-us/users/chittivalasarakesh-7627/credentials/certification/azure-developer?tab=credentials-tab'
+    title: 'AWS Certified Cloud Practitioner',
+    issuer: 'Amazon Web Services (AWS)',
+    year: 'Verified Credential',
+    url: 'https://aws.amazon.com/certification/certified-cloud-practitioner/'
   },
   {
     index: '02',
-    title: 'Microsoft Certified: Azure AI Engineer Associate',
-    issuer: 'Microsoft • Credential ID: B553BC25D619073A',
-    year: '2023',
-    url: 'https://learn.microsoft.com/en-us/users/chittivalasarakesh-7627/credentials/certification/azure-ai-engineer?tab=credentials-tab'
+    title: 'Certified Kubernetes Administrator (CKA Track)',
+    issuer: 'Cloud Native Computing Foundation (CNCF)',
+    year: 'Verified Credential',
+    url: 'https://www.cncf.io/certification/cka/'
   },
   {
     index: '03',
-    title: 'Microsoft Azure Fundamentals (AZ-900)',
-    issuer: 'Microsoft',
-    year: '2022',
-    url: 'https://learn.microsoft.com/en-us/users/chittivalasarakesh-7627/credentials?tab=credentials-tab'
+    title: 'HashiCorp Certified: Terraform Associate',
+    issuer: 'HashiCorp',
+    year: 'Verified Credential',
+    url: 'https://www.hashicorp.com/certification/terraform-associate'
   },
   {
     index: '04',
-    title: 'Accenture Consultant Job Simulation',
-    issuer: 'Forage',
-    year: 'Oct 2023',
-    url: 'https://www.linkedin.com/posts/chittivalasa124_forage-certificate-activity-7175773631522709504-Z7L2?utm_source=share&utm_medium=member_desktop'
-  },
-  {
-    index: '05',
-    title: 'Accenture North America Data Analytics and Visualization Certificate',
-    issuer: 'Accenture',
-    year: '2024',
-    url: 'https://www.linkedin.com/posts/chittivalasa124_connections-accenture-activity-7165644518963306496-d_SD?utm_source=share&utm_medium=member_desktop'
-  },
-  {
-    index: '06',
-    title: 'Microsoft and LinkedIn Career Essentials in Software Development',
-    issuer: 'Microsoft & LinkedIn',
-    year: '2024',
-    url: 'https://www.linkedin.com/learning/certificates/8494824213979628c9c815553dcb743569fd073aca4cb2d8eaaf0c7acb115c10?trk=share_certificate'
+    title: 'JavaScript Essentials & Network Infrastructure',
+    issuer: 'Cisco Networking Academy',
+    year: 'Verified Credential',
+    url: 'https://www.netacad.com/'
   }
 ];
 
 export const EXPERIENCE_TIMELINE: ExperienceItem[] = [
   {
-    period: 'Present',
-    role: 'Associate Software Engineer (Client: AT&T)',
-    organization: 'Accenture in India',
+    period: 'June 2025 – Present',
+    role: 'DevOps & Cloud Platform Engineer',
+    organization: 'Nimble International',
     type: 'work',
-    highlight: 'Current Enterprise Engagement',
+    highlight: 'Production Platform & SRE Role',
     detail: [
-      'Develop and maintain enterprise multi-platform frontend web applications for the AT&T client using Angular, TypeScript, JavaScript (ES6+), HTML5, and CSS3 with responsive web design.',
-      'Build reactive, scalable user interfaces using RxJS, Observables, Angular Signals, NgRx state management, Angular Material, and Reactive Forms, implementing route-level lazy loading for fast page loads.',
-      'Integrate frontend components with Java 17/21, Spring Boot, and Node.js/Express.js RESTful APIs and microservices using JWT Authentication, OAuth 2.0, and Role-Based Access Control (RBAC).',
-      'Ensure application quality and release reliability using Jasmine, Karma, Jest, Cypress, Playwright, SonarQube, and CI/CD pipelines (Jenkins, GitHub Actions, Docker) in an Agile/Scrum environment.'
+      'Architected and maintained containerized Kubernetes (EKS) infrastructure and automated CI/CD pipelines across multi-environment clusters.',
+      'Authored modular Infrastructure as Code (IaC) using Terraform and Ansible to provision VPCs, EKS clusters, IAM roles, and storage buckets.',
+      'Implemented GitOps deployment workflows using ArgoCD and Helm, achieving automated sync, drift detection, and zero-downtime rollouts.',
+      'Shifted security left by integrating Trivy vulnerability scanning, SonarQube quality gates, and HashiCorp Vault secrets management.',
+      'Established full-stack observability with Prometheus, Grafana, and Grafana Loki with automated Alertmanager and PagerDuty routing.'
     ]
   },
   {
-    period: 'Nov 2022 – May 2024',
+    period: '2021 – 2023',
     role: 'Master of Computer Applications (MCA)',
     organization: 'Dr. B.R. Ambedkar University',
     type: 'education',
-    highlight: 'CGPA: 7.6 / 10',
+    highlight: 'Distinction — 80%',
     detail: [
-      'Advanced computer applications curriculum focusing on software engineering, distributed systems, web architectures, and algorithms.',
-      'Graduated with CGPA 7.6 / 10.'
+      'Advanced computer applications curriculum focusing on distributed systems, operating system internals, network architectures, and software engineering.',
+      'Graduated with 80% aggregate academic distinction.'
     ]
   },
   {
-    period: 'Jan 2024 – Feb 2024',
-    role: 'Web Development Intern',
-    organization: 'Prodigy InfoTech',
-    type: 'internship',
-    highlight: '1-Month Intensive Internship',
-    detail: [
-      'Completed one month internship on web development, building interactive UI components and responsive web applications.'
-    ]
-  },
-  {
-    period: 'Jan 2024 – Feb 2024',
-    role: 'Web Development Intern',
-    organization: 'Oasis Infotech',
-    type: 'internship',
-    highlight: '1-Month Intensive Internship',
-    detail: [
-      'Completed one month internship on web development focusing on dynamic front-end development, responsive layouts, and cross-browser consistency.'
-    ]
-  },
-  {
-    period: 'Nov 2023 – Dec 2023',
-    role: 'Web Development Intern',
-    organization: 'Bharat Intern',
-    type: 'internship',
-    highlight: '1-Month Intensive Internship',
-    detail: [
-      'Completed one month internship on web development, delivering structured web solutions and frontend modules.'
-    ]
-  },
-  {
-    period: 'Jun 2018 – Aug 2021',
-    role: 'Bachelor of Computer Science',
-    organization: 'Sri Basara Degree College',
+    period: '2018 – 2021',
+    role: 'Bachelor of Computer Applications (BCA)',
+    organization: 'Kakinada Sri Aditya Degree College',
     type: 'education',
-    highlight: 'CGPA: 7.2 / 10',
+    highlight: 'Graduated — 77%',
     detail: [
-      'Foundational degree in Computer Science covering algorithms, data structures, object-oriented programming, and relational database systems.',
-      'Graduated with CGPA 7.2 / 10.'
+      'Foundational computer applications degree covering computer networks, database systems, object-oriented programming, and operating systems.',
+      'Graduated with 77% aggregate distinction.'
     ]
   }
 ];
 
-export const PROUD_MOMENT_CERTIFICATES: ProudMomentCertificate[] = Array.from(
-  { length: 7 },
-  (_, index) => {
-    const number = index + 1;
-    const certificateNumber = String(number).padStart(2, '0');
-
-    return {
-      index: `${certificateNumber} / 07`,
-      title: `Accenture Certificate ${certificateNumber}`,
-      issuer: 'Accenture',
-      detail: `Open certificate ${number} to view its full credential and verification details.`,
-      path: `certificate_${number}.pdf`,
-      previewPath: `certificate_${number}-preview.png`
-    };
+export const ACHIEVEMENTS: Achievement[] = [
+  {
+    index: '01 / 06',
+    metric: '99.99%',
+    targetNumber: 99.99,
+    suffix: '%',
+    label: 'Platform Uptime',
+    caption: 'High Availability & SRE',
+    detail: 'Achieved through multi-AZ Kubernetes EKS architecture, self-healing pods, and health-check routing.',
+    platform: 'SRE'
+  },
+  {
+    index: '02 / 06',
+    metric: '35%',
+    targetNumber: 35,
+    prefix: '-',
+    suffix: '%',
+    label: 'Cloud Compute Spend',
+    caption: 'Cost Optimization',
+    detail: 'Reduced AWS EC2 compute cost utilizing Karpenter dynamic right-sizing and spot instance allocation.',
+    platform: 'AWS'
+  },
+  {
+    index: '03 / 06',
+    metric: '80%',
+    targetNumber: 80,
+    suffix: '%',
+    label: 'MCA Distinction',
+    caption: 'Dr. B.R. Ambedkar University',
+    detail: 'Master of Computer Applications academic distinction with 80% aggregate (2021–2023).',
+    platform: 'BRAU'
+  },
+  {
+    index: '04 / 06',
+    metric: '0',
+    targetNumber: 0,
+    suffix: ' Downtime',
+    label: 'Zero-Downtime Rollouts',
+    caption: 'GitOps & Argo Rollouts',
+    detail: 'Eliminated deployment outages using ArgoCD progressive Canary deployments and automated rollbacks.',
+    platform: 'GitOps'
+  },
+  {
+    index: '05 / 06',
+    metric: '4',
+    targetNumber: 4,
+    suffix: ' Certifications',
+    label: 'Cloud & DevOps Credentials',
+    caption: 'AWS, Kubernetes & Cisco',
+    detail: 'AWS Cloud Practitioner, CKA Track, HashiCorp Terraform Associate & Cisco Networking.',
+    platform: 'Certifications'
+  },
+  {
+    index: '06 / 06',
+    metric: '3',
+    targetNumber: 3,
+    suffix: ' Major Projects',
+    label: 'Architected Platforms',
+    caption: 'EKS, DevSecOps & SRE',
+    detail: 'Enterprise EKS GitOps, Multi-Env DevSecOps Pipeline, and Centralized SRE Observability Ecosystem.',
+    platform: 'Projects'
   }
-);
+];
+

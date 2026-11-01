@@ -29,7 +29,7 @@ import { observeScrollProgress } from '../../core/observers';
             class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-xs font-semibold tracking-wider transition-all duration-500 group-hover:rotate-[360deg]"
             [ngClass]="isScrolled() ? 'bg-ink text-paper shadow-md' : 'border border-ink text-ink bg-transparent'"
           >
-            CR
+            JP
           </div>
           <span 
             class="font-medium text-sm text-ink tracking-tight transition-opacity duration-300 hidden sm:inline"
@@ -188,4 +188,3 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
   }
 }
-

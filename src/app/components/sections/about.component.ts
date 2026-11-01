@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PROFILE } from '../../core/data';
-import { LeetCodeService } from '../../core/leetcode.service';
 import { GithubService } from '../../core/github.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { GithubService } from '../../core/github.service';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section id="about" class="pt-12 sm:pt-16 pb-6 sm:pb-8 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="About Chittivalasa Rakesh">
+    <section id="about" class="pt-12 sm:pt-16 pb-6 sm:pb-8 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="About Jhansi Lakshmi Prasad">
       <!-- Section Tag & Heading -->
       <div class="mb-8 sm:mb-10 rv">
         <div class="font-mono text-xs uppercase tracking-widest text-[#77756f] mb-2">01 — About</div>
@@ -39,7 +38,7 @@ import { GithubService } from '../../core/github.service';
           <div class="flex flex-wrap gap-3 mt-8 pt-6 border-t border-[rgba(13,13,13,0.1)]">
             <a 
               [href]="profile.resumePath" 
-              download 
+              download="Jhansi_Lakshmi_Prasad_Resume.pdf"
               class="px-4 py-2 rounded-full bg-[#0d0d0d] text-white text-xs font-medium hover:bg-neutral-800 transition-all active:scale-95"
             >
               Résumé ↓
@@ -66,16 +65,6 @@ import { GithubService } from '../../core/github.service';
                 LinkedIn ↗
               </a>
             }
-            <a 
-              [href]="leetcodeService.profileUrl" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="px-4 py-2 rounded-full border border-[rgba(13,13,13,0.1)] text-[#0d0d0d] hover:border-[#0d0d0d] text-xs font-medium transition-all active:scale-95 flex items-center gap-1.5"
-            >
-              <span>LeetCode</span>
-              <span class="text-[10px] text-[#77756f]">({{ lc().totalSolved }})</span>
-              <span>↗</span>
-            </a>
           </div>
         </div>
 
@@ -109,12 +98,12 @@ import { GithubService } from '../../core/github.service';
               <div class="card-face card-front absolute inset-0 bg-white rounded-3xl p-5 border border-neutral-200 shadow-xl flex flex-col justify-between">
                 <!-- Top Header Band -->
                 <div class="bg-[#0d0d0d] text-white text-[10px] font-mono tracking-widest text-center py-1.5 rounded-lg font-bold">
-                  DEVELOPER ID • ACCENTURE
+                  PLATFORM ID • DEVOPS & CLOUD SRE
                 </div>
 
                 <!-- Portrait Photo in frame -->
                 <div class="flex flex-col items-center my-auto">
-                  <div class="w-28 h-36 rounded-2xl overflow-hidden border-2 border-neutral-200 shadow-inner group">
+                  <div class="w-28 h-36 rounded-2xl overflow-hidden border-2 border-neutral-200 shadow-inner group bg-neutral-50">
                     <img 
                       src="portrait-bust.webp" 
                       [alt]="profile.name"
@@ -154,7 +143,7 @@ import { GithubService } from '../../core/github.service';
                     <span class="w-[3px] h-full bg-[#0d0d0d]"></span>
                   </div>
                   <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-neutral-300 via-neutral-100 to-neutral-400 border border-neutral-300 shadow-sm flex items-center justify-center text-[7px] font-mono font-bold text-neutral-600">
-                    CR
+                    JP
                   </div>
                 </div>
               </div>
@@ -164,24 +153,24 @@ import { GithubService } from '../../core/github.service';
                 <div>
                   <div class="font-mono text-[9px] uppercase tracking-widest text-neutral-400 border-b border-neutral-800 pb-2 mb-3 flex items-center justify-between">
                     <span>Security Credentials</span>
-                    <span class="text-neutral-500 font-bold">CR-124</span>
+                    <span class="text-neutral-500 font-bold">JP-818</span>
                   </div>
                   <ul class="text-[11px] space-y-2 text-neutral-300 font-sans">
                     <li class="flex items-start gap-1.5">
                       <span class="text-neutral-500 font-mono">01.</span>
-                      <span>Frontend Engineer on AT&T Client Engagement</span>
+                      <span>DevOps & Cloud Platform Engineer</span>
                     </li>
                     <li class="flex items-start gap-1.5">
                       <span class="text-neutral-500 font-mono">02.</span>
-                      <span>Master of Computer Applications (CGPA: 7.6 / 10)</span>
+                      <span>Master of Computer Applications (Distinction: 80%)</span>
                     </li>
                     <li class="flex items-start gap-1.5">
                       <span class="text-neutral-500 font-mono">03.</span>
-                      <span>Core focus: Angular Signals, RxJS, NgRx & Spring Boot</span>
+                      <span>Core focus: Kubernetes, Terraform, ArgoCD, AWS & Observability</span>
                     </li>
                     <li class="flex items-start gap-1.5">
                       <span class="text-neutral-500 font-mono">04.</span>
-                      <span>Certified in Microsoft Azure & Accenture Analytics</span>
+                      <span>AWS Certified, CKA Track & HashiCorp Terraform Specialist</span>
                     </li>
                   </ul>
                 </div>
@@ -218,16 +207,16 @@ import { GithubService } from '../../core/github.service';
             
             <dl class="space-y-4 text-xs sm:text-sm">
               <div class="border-b border-[rgba(13,13,13,0.1)] pb-3">
-                <dt class="text-[#77756f] text-xs font-mono">Current Engagement</dt>
-                <dd class="font-semibold text-[#0d0d0d] mt-0.5">{{ profile.clientEngagement }}</dd>
+                <dt class="text-[#77756f] text-xs font-mono">Current Role</dt>
+                <dd class="font-semibold text-[#0d0d0d] mt-0.5">Front-End Developer at {{ profile.clientEngagement }}</dd>
               </div>
               <div class="border-b border-[rgba(13,13,13,0.1)] pb-3">
                 <dt class="text-[#77756f] text-xs font-mono">Highest Degree</dt>
-                <dd class="font-semibold text-[#0d0d0d] mt-0.5">Master of Computer Applications (7.6 CGPA)</dd>
+                <dd class="font-semibold text-[#0d0d0d] mt-0.5">Master of Computer Applications (80%)</dd>
               </div>
               <div class="border-b border-[rgba(13,13,13,0.1)] pb-3">
                 <dt class="text-[#77756f] text-xs font-mono">Undergraduate Degree</dt>
-                <dd class="font-semibold text-[#0d0d0d] mt-0.5">B.Sc Computer Science (7.2 CGPA)</dd>
+                <dd class="font-semibold text-[#0d0d0d] mt-0.5">Bachelor of Computer Applications (77%)</dd>
               </div>
               <div class="border-b border-[rgba(13,13,13,0.1)] pb-3">
                 <dt class="text-[#77756f] text-xs font-mono">Direct Email</dt>
@@ -241,152 +230,15 @@ import { GithubService } from '../../core/github.service';
           </div>
 
           <div class="mt-8 pt-4 text-xs text-[#77756f] font-mono flex items-center justify-between border-t border-[rgba(13,13,13,0.1)]">
-            <span>Availability: Available for collaborations</span>
+            <span>Availability: Open for Opportunities</span>
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           </div>
         </div>
 
       </div>
 
-      <!-- LIVE LEETCODE ACTIVITY WIDGET -->
+      <!-- LIVE GITHUB CONTRIBUTIONS ACTIVITY WIDGET -->
       <div class="mt-8 rv">
-        <a 
-          [href]="leetcodeService.profileUrl" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="group block p-6 sm:p-8 rounded-3xl bg-white border border-[rgba(13,13,13,0.1)] hover:border-[#0d0d0d] shadow-sm hover:shadow-xl transition-all duration-300"
-        >
-          <!-- Top Row: LeetCode Brand + Live Status Badge -->
-          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[rgba(13,13,13,0.1)]">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-2xl bg-[#f4f2ee] flex items-center justify-center p-2 shadow-inner">
-                <svg viewBox="0 0 24 24" class="w-full h-full text-[#FFA116]" fill="currentColor">
-                  <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
-                </svg>
-              </div>
-
-              <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="font-bold text-base text-[#0d0d0d] tracking-tight group-hover:text-black">
-                    LeetCode Live Profile
-                  </h4>
-                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Live Sync
-                  </span>
-                </div>
-                <div class="font-mono text-xs text-[#77756f]">
-                  &#64;{{ leetcodeService.username }} • Real-time problem solving activity
-                </div>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-2 text-xs font-mono text-[#0d0d0d] font-semibold">
-              <span>View Profile</span>
-              <span class="text-sm transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform">↗</span>
-            </div>
-          </div>
-
-          <!-- Middle Metrics Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-            <div class="p-4 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)] flex flex-col justify-between">
-              <span class="font-mono text-[10px] uppercase tracking-wider text-[#77756f]">Total Solved</span>
-              <div class="my-2">
-                <span class="font-mono text-3xl sm:text-4xl font-bold text-[#0d0d0d]">{{ lc().totalSolved }}</span>
-                <span class="font-mono text-xs text-[#77756f]"> / {{ lc().totalQuestions }}</span>
-              </div>
-              <span class="font-mono text-[11px] text-emerald-600 font-medium">✓ Real-time verified</span>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)] flex flex-col justify-between">
-              <span class="font-mono text-[10px] uppercase tracking-wider text-teal-700 font-semibold">Easy</span>
-              <div class="my-2">
-                <span class="font-mono text-3xl sm:text-4xl font-bold text-[#0d0d0d]">{{ lc().easySolved }}</span>
-                <span class="font-mono text-xs text-[#77756f]"> / {{ lc().totalEasy }}</span>
-              </div>
-              <div class="w-full bg-neutral-200 h-1.5 rounded-full overflow-hidden">
-                <div class="bg-teal-500 h-full rounded-full" [style.width.%]="(lc().easySolved / lc().totalEasy) * 100"></div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)] flex flex-col justify-between">
-              <span class="font-mono text-[10px] uppercase tracking-wider text-amber-600 font-semibold">Medium</span>
-              <div class="my-2">
-                <span class="font-mono text-3xl sm:text-4xl font-bold text-[#0d0d0d]">{{ lc().mediumSolved }}</span>
-                <span class="font-mono text-xs text-[#77756f]"> / {{ lc().totalMedium }}</span>
-              </div>
-              <div class="w-full bg-neutral-200 h-1.5 rounded-full overflow-hidden">
-                <div class="bg-amber-500 h-full rounded-full" [style.width.%]="(lc().mediumSolved / lc().totalMedium) * 100"></div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)] flex flex-col justify-between">
-              <span class="font-mono text-[10px] uppercase tracking-wider text-rose-600 font-semibold">Hard</span>
-              <div class="my-2">
-                <span class="font-mono text-3xl sm:text-4xl font-bold text-[#0d0d0d]">{{ lc().hardSolved }}</span>
-                <span class="font-mono text-xs text-[#77756f]"> / {{ lc().totalHard }}</span>
-              </div>
-              <div class="w-full bg-neutral-200 h-1.5 rounded-full overflow-hidden">
-                <div class="bg-rose-500 h-full rounded-full" [style.width.%]="(lc().hardSolved / lc().totalHard) * 100"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Heatmap Matrix: 52 Weeks x 7 Days for LeetCode -->
-          <div class="pt-6 overflow-x-auto no-scrollbar">
-            <div class="min-w-[680px]">
-              <div class="flex items-center justify-between text-xs font-mono text-[#77756f] mb-3">
-                <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  <span class="font-semibold text-[#0d0d0d]">{{ lc().submissions }} submissions in the past one year</span>
-                  <span class="text-[11px] text-[#77756f] hidden sm:inline">•</span>
-                  <span class="text-[11px] text-[#77756f]">Total active days: <strong class="text-[#0d0d0d] font-semibold">{{ lc().totalActiveDays }}</strong></span>
-                  <span class="text-[11px] text-[#77756f] hidden sm:inline">•</span>
-                  <span class="text-[11px] text-[#77756f]">Max streak: <strong class="text-[#0d0d0d] font-semibold">{{ lc().maxStreak }}</strong></span>
-                </div>
-                <div class="flex items-center gap-1.5 text-[10px]">
-                  <span>Less</span>
-                  <span class="w-2.5 h-2.5 rounded-xs bg-[#ebedf0] border border-[rgba(0,0,0,0.05)]"></span>
-                  <span class="w-2.5 h-2.5 rounded-xs bg-[#9be9a8]"></span>
-                  <span class="w-2.5 h-2.5 rounded-xs bg-[#40c463]"></span>
-                  <span class="w-2.5 h-2.5 rounded-xs bg-[#30a14e]"></span>
-                  <span class="w-2.5 h-2.5 rounded-xs bg-[#216e39]"></span>
-                  <span>More</span>
-                </div>
-              </div>
-
-              <!-- Contribution Squares Grid -->
-              <div class="grid grid-flow-col grid-rows-7 gap-1 p-3 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)]">
-                @for (day of lc().calendar; track day.date) {
-                  <div
-                    class="w-2.5 h-2.5 rounded-xs transition-transform duration-200 hover:scale-125 hover:z-10 cursor-pointer"
-                    [ngClass]="getDayColorClass(day.level)"
-                    [attr.title]="day.date + ': ' + day.count + ' submission' + (day.count === 1 ? '' : 's')"
-                  ></div>
-                }
-              </div>
-
-              <!-- Month Labels -->
-              <div class="flex justify-between text-[10px] font-mono text-[#77756f] px-2 pt-2">
-                <span>Nov</span>
-                <span>Dec</span>
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>Mar</span>
-                <span>Apr</span>
-                <span>May</span>
-                <span>Jun</span>
-                <span>Jul</span>
-                <span>Aug</span>
-                <span>Sep</span>
-                <span>Oct</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <!-- LIVE GITHUB CONTRIBUTIONS ACTIVITY WIDGET (Under LeetCode) -->
-      <div class="mt-6 rv">
         <a 
           [href]="githubService.profileUrl" 
           target="_blank" 
@@ -405,7 +257,7 @@ import { GithubService } from '../../core/github.service';
               <div>
                 <div class="flex items-center gap-2">
                   <h4 class="font-bold text-base text-[#0d0d0d] tracking-tight group-hover:text-black">
-                    GitHub Contributions Activity
+                    GitHub Profile Activity
                   </h4>
                   <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -424,11 +276,11 @@ import { GithubService } from '../../core/github.service';
             </div>
           </div>
 
-          <!-- Heatmap Matrix: 52 Weeks x 7 Days -->
+          <!-- Heatmap Matrix: 53 Columns x 7 Days matching GitHub 1:1 -->
           <div class="pt-6 overflow-x-auto no-scrollbar">
-            <div class="min-w-[680px]">
+            <div class="min-w-[720px]">
               <div class="flex items-center justify-between text-xs font-mono text-[#77756f] mb-3">
-                <span class="font-semibold text-[#0d0d0d]">{{ gh().totalContributions }} contributions in the past year</span>
+                <span class="font-semibold text-[#0d0d0d]">{{ gh().totalContributions }} contributions in the last year</span>
                 <div class="flex items-center gap-1.5 text-[10px]">
                   <span>Less</span>
                   <span class="w-2.5 h-2.5 rounded-xs bg-[#ebedf0] border border-[rgba(0,0,0,0.05)]"></span>
@@ -440,31 +292,44 @@ import { GithubService } from '../../core/github.service';
                 </div>
               </div>
 
-              <!-- Contribution Squares Grid -->
-              <div class="grid grid-flow-col grid-rows-7 gap-1 p-3 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)]">
-                @for (day of gh().contributions; track day.date) {
-                  <div
-                    class="w-2.5 h-2.5 rounded-xs transition-transform duration-200 hover:scale-125 hover:z-10 cursor-pointer"
-                    [ngClass]="getDayColorClass(day.level)"
-                    [attr.title]="day.date + ': ' + day.count + ' contributions'"
-                  ></div>
+              <!-- Month Headers with exact GitHub column spans -->
+              <div class="flex text-[10px] font-mono text-[#77756f] mb-1.5 pl-7">
+                @for (m of gh().months; track m.name + $index) {
+                  <div [style.flex]="m.colSpan" class="text-left truncate">
+                    {{ m.name }}
+                  </div>
                 }
+                <!-- Trailing spacer for col 53 -->
+                <div style="flex: 1"></div>
               </div>
 
-              <!-- Month Labels -->
-              <div class="flex justify-between text-[10px] font-mono text-[#77756f] px-2 pt-2">
-                <span>Nov</span>
-                <span>Dec</span>
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>Mar</span>
-                <span>Apr</span>
-                <span>May</span>
-                <span>Jun</span>
-                <span>Jul</span>
-                <span>Aug</span>
-                <span>Sep</span>
-                <span>Oct</span>
+              <!-- Main Calendar with Day-of-week labels on the left -->
+              <div class="flex gap-2 items-center">
+                <!-- Day-of-week labels matching GitHub -->
+                <div class="flex flex-col justify-between h-[82px] text-[9px] font-mono text-[#77756f] select-none py-[1px]">
+                  <span></span>
+                  <span>Mon</span>
+                  <span></span>
+                  <span>Wed</span>
+                  <span></span>
+                  <span>Fri</span>
+                  <span></span>
+                </div>
+
+                <!-- 53-Column x 7-Row Contribution Grid -->
+                <div class="grid grid-flow-col grid-rows-7 gap-[3px] p-2.5 rounded-2xl bg-[#f4f2ee] border border-[rgba(13,13,13,0.06)] flex-1">
+                  @for (day of gh().contributions; track day.date + '-' + day.col + '-' + day.row) {
+                    @if (day.level === -1) {
+                      <div class="w-2.5 h-2.5 opacity-0 pointer-events-none"></div>
+                    } @else {
+                      <div
+                        class="w-2.5 h-2.5 rounded-xs transition-transform duration-200 hover:scale-125 hover:z-10 cursor-pointer"
+                        [ngClass]="getDayColorClass(day.level)"
+                        [attr.title]="day.tooltip || (day.count + ' contributions on ' + day.date)"
+                      ></div>
+                    }
+                  }
+                </div>
               </div>
             </div>
           </div>
@@ -505,15 +370,12 @@ import { GithubService } from '../../core/github.service';
 })
 export class AboutComponent implements OnInit {
   readonly profile = PROFILE;
-  readonly leetcodeService = inject(LeetCodeService);
   readonly githubService = inject(GithubService);
 
   isFlipped = signal<boolean>(false);
-  readonly lc = this.leetcodeService.stats;
   readonly gh = this.githubService.stats;
 
   ngOnInit(): void {
-    this.leetcodeService.fetchStats();
     this.githubService.fetchStats();
   }
 

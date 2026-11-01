@@ -34,7 +34,7 @@ import { ScrollService } from '../../core/scroll.service';
         [muted]="isMuted()"
         poster="hero/hero-poster.webp"
       >
-        <source src="hero/hero.webm" type="video/webm" />
+        <source src="Intro.mp4" type="video/mp4" />
         <source src="hero/hero.mp4" type="video/mp4" />
       </video>
 
@@ -48,12 +48,12 @@ import { ScrollService } from '../../core/scroll.service';
           </div>
 
           <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#0d0d0d] leading-[0.95] mb-4">
-            Full Stack<br>
-            <span class="font-normal font-serif italic text-[#77756f]">Developer.</span>
+            DevOps<br>
+            <span class="font-normal font-serif italic text-[#77756f]">Engineer.</span>
           </h1>
 
           <p class="text-xs sm:text-sm text-[#77756f] font-mono tracking-tight">
-            Creative developer • Enterprise web technology
+            Advanced DevOps • Kubernetes, Terraform & GitOps Platform Architecture
           </p>
         </div>
 
@@ -105,7 +105,7 @@ import { ScrollService } from '../../core/scroll.service';
 
             <a 
               [href]="profile.resumePath" 
-              download="Chittivalasa_Rakesh_Resume.pdf"
+              download="Jhansi_Lakshmi_Prasad_Resume.pdf"
               class="hover:text-[#0d0d0d] transition-colors flex items-center gap-1 cursor-pointer"
             >
               <span>Resume</span>

@@ -40,8 +40,8 @@ const DEFAULT_SUBMISSION_CALENDAR: Record<string, number> = {
   providedIn: 'root'
 })
 export class LeetCodeService {
-  readonly username = 'chittivalasa-rakesh';
-  readonly profileUrl = 'https://leetcode.com/u/chittivalasa-rakesh/';
+  readonly username = 'jhansiprasad1204';
+  readonly profileUrl = 'https://leetcode.com/u/jhansiprasad1204/';
 
   private initialData = this.buildCalendarFromMap(DEFAULT_SUBMISSION_CALENDAR);
 
@@ -184,4 +184,6 @@ export class LeetCodeService {
     return { calendar, totalSubmissions, activeDays, maxStreak };
   }
 }
+
+
 
