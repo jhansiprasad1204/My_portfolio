@@ -2,7 +2,58 @@
   "username": "jhansiprasad1204",
   "totalContributions": 70,
   "publicRepos": 3,
-  "updatedAt": "2026-11-01T07:12:01.682Z",
+  "followers": 0,
+  "months": [
+    {
+      "name": "Nov",
+      "colSpan": 5
+    },
+    {
+      "name": "Dec",
+      "colSpan": 4
+    },
+    {
+      "name": "Jan",
+      "colSpan": 4
+    },
+    {
+      "name": "Feb",
+      "colSpan": 4
+    },
+    {
+      "name": "Mar",
+      "colSpan": 5
+    },
+    {
+      "name": "Apr",
+      "colSpan": 4
+    },
+    {
+      "name": "May",
+      "colSpan": 5
+    },
+    {
+      "name": "Jun",
+      "colSpan": 4
+    },
+    {
+      "name": "Jul",
+      "colSpan": 4
+    },
+    {
+      "name": "Aug",
+      "colSpan": 5
+    },
+    {
+      "name": "Sep",
+      "colSpan": 4
+    },
+    {
+      "name": "Oct",
+      "colSpan": 4
+    }
+  ],
+  "updatedAt": "2026-11-01T07:21:51.430Z",
   "contributions": [
     {
       "date": "2025-11-02",

@@ -60,10 +60,27 @@ async function syncGitHubContributions(username = 'jhansiprasad1204') {
 
   console.log(`[sync-github] Scraped ${rawDateMap.size} unique contribution days`);
 
-  // 4. Construct exact 53-week x 7-day column-major matrix
-  // CSS Grid with `grid-flow-col grid-rows-7` requires:
-  // Col 0 (rows 0..6), Col 1 (rows 0..6), ..., Col 52 (rows 0..6)
-  const baseSunday = new Date('2025-11-02T00:00:00Z');
+  // 4. Scrape dynamic month headers directly from GitHub table
+  const months = [];
+  const monthRegex = /<td[^>]*class="[^"]*ContributionCalendar-label[^"]*"[^>]*colspan="([0-9]+)"[^>]*>[\s\S]*?<span aria-hidden="true"[^>]*>([A-Za-z]{3})<\/span>[\s\S]*?<\/td>/gi;
+  let mMatch;
+  while ((mMatch = monthRegex.exec(html)) !== null) {
+    months.push({
+      name: mMatch[2],
+      colSpan: parseInt(mMatch[1], 10)
+    });
+  }
+  console.log(`[sync-github] Scraped ${months.length} dynamic month headers: ${months.map(m => `${m.name}(${m.colSpan})`).join(', ')}`);
+
+  // 5. Construct exact 53-week x 7-day column-major matrix dynamically
+  const allDates = Array.from(rawDateMap.keys()).sort();
+  if (allDates.length === 0) {
+    throw new Error('No contribution dates found in scraped GitHub HTML');
+  }
+  const firstDate = new Date(allDates[0] + 'T00:00:00Z');
+  const baseSunday = new Date(firstDate.getTime() - firstDate.getUTCDay() * 86400000);
+  console.log(`[sync-github] Calendar base Sunday computed dynamically: ${baseSunday.toISOString().split('T')[0]}`);
+
   const matrix = [];
 
   for (let c = 0; c < 53; c++) {
@@ -96,26 +113,32 @@ async function syncGitHubContributions(username = 'jhansiprasad1204') {
     }
   }
 
-  // 5. Fetch user public repositories count
-  let publicRepos = 8;
+  // 6. Fetch live user details directly from GitHub API
+  let publicRepos = 0;
+  let followers = 0;
   try {
     const userRes = await fetch(`https://api.github.com/users/${username}`, {
-      headers: { 'User-Agent': 'Node.js' }
+      headers: { 'User-Agent': 'Mozilla/5.0' }
     });
     if (userRes.ok) {
       const userData = await userRes.json();
       if (typeof userData.public_repos === 'number') {
         publicRepos = userData.public_repos;
       }
+      if (typeof userData.followers === 'number') {
+        followers = userData.followers;
+      }
     }
   } catch (e) {
-    console.warn('[sync-github] Could not fetch public_repos from API:', e.message);
+    console.warn('[sync-github] Could not fetch public details from API:', e.message);
   }
 
   const payload = {
     username,
     totalContributions,
     publicRepos,
+    followers,
+    months,
     updatedAt: new Date().toISOString(),
     contributions: matrix
   };

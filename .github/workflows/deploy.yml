@@ -2,7 +2,7 @@ name: Deploy Angular portfolio to GitHub Pages
 
 on:
   schedule:
-    - cron: '0 * * * *' # Auto-sync live contributions & deploy every hour
+    - cron: '*/30 * * * *' # Auto-sync live contributions & deploy every 30 minutes
   push:
     branches:
       - main
