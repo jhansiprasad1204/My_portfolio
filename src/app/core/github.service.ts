@@ -37,11 +37,11 @@ export const GITHUB_MONTH_HEADERS: MonthLabel[] = [
   { name: 'Jul', colSpan: 4 },
   { name: 'Aug', colSpan: 5 },
   { name: 'Sep', colSpan: 4 },
-  { name: 'Oct', colSpan: 4 }
+  { name: 'Oct', colSpan: 4 },
 ];
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GithubService {
   readonly username = 'jhansiprasad1204';
@@ -55,7 +55,7 @@ export class GithubService {
     months: GITHUB_MONTH_HEADERS,
     contributions: [],
     loading: true,
-    error: false
+    error: false,
   });
 
   fetchStats(): void {
@@ -74,7 +74,7 @@ export class GithubService {
           this.stats.update((s) => ({
             ...s,
             publicRepos: typeof user.public_repos === 'number' ? user.public_repos : s.publicRepos,
-            followers: typeof user.followers === 'number' ? user.followers : s.followers
+            followers: typeof user.followers === 'number' ? user.followers : s.followers,
           }));
         }
       })
@@ -90,11 +90,14 @@ export class GithubService {
         if (data && Array.isArray(data.contributions)) {
           this.stats.update((s) => ({
             ...s,
-            totalContributions: typeof data.totalContributions === 'number' ? data.totalContributions : s.totalContributions,
+            totalContributions:
+              typeof data.totalContributions === 'number'
+                ? data.totalContributions
+                : s.totalContributions,
             publicRepos: typeof data.publicRepos === 'number' ? data.publicRepos : s.publicRepos,
             contributions: data.contributions,
             loading: false,
-            error: false
+            error: false,
           }));
         }
       })
@@ -113,7 +116,9 @@ export class GithubService {
       });
   }
 
-  private reconstructFromApi(rawContributions: Array<{ date: string; count: number; level: number }>): void {
+  private reconstructFromApi(
+    rawContributions: Array<{ date: string; count: number; level: number }>,
+  ): void {
     const map = new Map<string, { count: number; level: number }>();
     for (const item of rawContributions) {
       if (item && item.date) {
@@ -143,7 +148,8 @@ export class GithubService {
           level,
           row: r,
           col: c,
-          tooltip: count > 0 ? `${count} contributions on ${dateStr}` : `No contributions on ${dateStr}`
+          tooltip:
+            count > 0 ? `${count} contributions on ${dateStr}` : `No contributions on ${dateStr}`,
         });
       }
     }
@@ -153,7 +159,7 @@ export class GithubService {
       totalContributions: total > 0 ? total : s.totalContributions,
       contributions: grid,
       loading: false,
-      error: false
+      error: false,
     }));
   }
 }
