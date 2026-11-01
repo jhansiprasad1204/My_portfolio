@@ -8,7 +8,7 @@
   <!-- Background squircle -->
   <rect x="4" y="4" width="120" height="120" rx="32" fill="url(#subtleGrad)" stroke="rgba(255,255,255,0.18)" stroke-width="3" />
   
-  <!-- "CR" Monogram -->
+  <!-- "JP" Monogram -->
   <text 
     x="64" 
     y="70" 
@@ -19,5 +19,5 @@
     font-size="56" 
     font-weight="800" 
     letter-spacing="-1.5px"
-  >CR</text>
+  >JP</text>
 </svg>
