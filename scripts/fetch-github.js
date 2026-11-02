@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 async function syncGitHubContributions(username = 'jhansiprasad1204') {
   console.log(`[sync-github] Fetching live contributions for ${username}...`);
@@ -143,8 +144,9 @@ async function syncGitHubContributions(username = 'jhansiprasad1204') {
     contributions: matrix
   };
 
-  fs.writeFileSync('public/github-contributions.json', JSON.stringify(payload, null, 2), 'utf8');
-  console.log(`[sync-github] Saved exact 53x7 matrix (${matrix.length} cells) to public/github-contributions.json`);
+  const outputPath = path.resolve(__dirname, '../public/github-contributions.json');
+  fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2), 'utf8');
+  console.log(`[sync-github] Saved exact 53x7 matrix (${matrix.length} cells) to ${outputPath}`);
 
   const activeDays = matrix.filter(d => d.count > 0);
   console.log(`[sync-github] Active contribution days: ${activeDays.length}`);
