@@ -76,7 +76,7 @@ export const PROFILE = {
   graduationYear: '2023',
   idNumber: 'JP-818124-OPS',
   validFrom: '2000',
-  validTill: '∞',
+  validTill: '∞',// later change
   department: 'Cloud Platform & SRE Engineering',
   resumeSummary:
     'Advanced DevOps & Cloud Platform Engineer specializing in Kubernetes (EKS), Terraform Infrastructure as Code, GitOps with ArgoCD, and automated DevSecOps pipelines across multi-environment architectures. Experienced in building self-healing container platforms, shifting security left with Vault and Trivy, and driving high-availability observability with Prometheus and Grafana.',
