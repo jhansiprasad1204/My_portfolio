@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, OnInit, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, OnInit, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PROFILE } from '../../core/data';
 import { GithubService } from '../../core/github.service';
@@ -239,12 +239,7 @@ import { GithubService } from '../../core/github.service';
 
       <!-- LIVE GITHUB CONTRIBUTIONS ACTIVITY WIDGET -->
       <div class="mt-8 rv">
-        <a 
-          [href]="githubService.profileUrl" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="group block p-6 sm:p-8 rounded-3xl bg-white border border-[rgba(13,13,13,0.1)] hover:border-[#0d0d0d] shadow-sm hover:shadow-xl transition-all duration-300"
-        >
+        <div class="group block p-6 sm:p-8 rounded-3xl bg-white border border-[rgba(13,13,13,0.1)] shadow-sm">
           <!-- Top Row: GitHub Brand + Live Stats -->
           <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[rgba(13,13,13,0.1)]">
             <div class="flex items-center gap-3">
@@ -271,8 +266,15 @@ import { GithubService } from '../../core/github.service';
             </div>
 
             <div class="flex items-center gap-2 text-xs font-mono text-[#0d0d0d] font-semibold">
-              <span>View GitHub</span>
-              <span class="text-sm transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform">↗</span>
+              <a
+                [href]="githubService.profileUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 hover:underline"
+              >
+                <span>View GitHub</span>
+                <span class="text-sm transform group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform">↗</span>
+              </a>
             </div>
           </div>
 
@@ -322,18 +324,26 @@ import { GithubService } from '../../core/github.service';
                     @if (day.level === -1) {
                       <div class="w-2.5 h-2.5 opacity-0 pointer-events-none"></div>
                     } @else {
-                      <div
-                        class="w-2.5 h-2.5 rounded-xs transition-transform duration-200 hover:scale-125 hover:z-10 cursor-pointer"
+                      <button
+                        type="button"
+                        class="contribution-cell w-2.5 h-2.5 rounded-xs transition-transform duration-200 hover:scale-125 hover:z-10 cursor-pointer"
                         [ngClass]="getDayColorClass(day.level)"
-                        [attr.title]="day.tooltip || (day.count + ' contributions on ' + day.date)"
-                      ></div>
+                        [attr.aria-label]="day.tooltip || (day.count + ' contributions on ' + day.date)"
+                        [attr.aria-expanded]="selectedContribution() === day.date"
+                        [class.is-selected]="selectedContribution() === day.date"
+                        (click)="toggleContributionTooltip(day.date)"
+                      >
+                        <span class="contribution-tooltip" role="tooltip">
+                          {{ day.tooltip || (day.count + ' contributions on ' + day.date) }}
+                        </span>
+                      </button>
                     }
                   }
                 </div>
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
 
     </section>
@@ -366,6 +376,31 @@ import { GithubService } from '../../core/github.service';
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    .contribution-cell {
+      position: relative;
+      border: 0;
+      padding: 0;
+    }
+    .contribution-tooltip {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      padding: 0.375rem 0.5rem;
+      border-radius: 0.375rem;
+      background: #0d0d0d;
+      color: white;
+      font: 10px/1.4 monospace;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .contribution-cell:hover .contribution-tooltip,
+    .contribution-cell:focus-visible .contribution-tooltip,
+    .contribution-cell.is-selected .contribution-tooltip {
+      display: block;
+    }
   `]
 })
 export class AboutComponent implements OnInit {
@@ -374,6 +409,7 @@ export class AboutComponent implements OnInit {
 
   isFlipped = signal<boolean>(false);
   readonly gh = this.githubService.stats;
+  readonly selectedContribution = signal<string | null>(null);
 
   ngOnInit(): void {
     this.githubService.fetchStats();
@@ -381,6 +417,18 @@ export class AboutComponent implements OnInit {
 
   toggleFlip(): void {
     this.isFlipped.update((v) => !v);
+  }
+
+  toggleContributionTooltip(date: string): void {
+    this.selectedContribution.update((selected) => selected === date ? null : date);
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeContributionTooltipOnOutsideClick(event: MouseEvent): void {
+    const target = event.target;
+    if (!(target instanceof Element) || !target.closest('.contribution-cell')) {
+      this.selectedContribution.set(null);
+    }
   }
 
   getDayColorClass(level: number): string {
